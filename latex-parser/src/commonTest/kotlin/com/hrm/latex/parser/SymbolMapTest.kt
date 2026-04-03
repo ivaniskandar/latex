@@ -263,6 +263,22 @@ class SymbolMapTest {
         assertEquals("ℵ", SymbolMap.getSymbol("aleph"))
     }
 
+    // ========== 转义字符测试 ==========
+
+    @Test
+    fun testEscapeCharacters() {
+        assertEquals("&", SymbolMap.getSymbol("&"))
+        assertEquals("%", SymbolMap.getSymbol("%"))
+        assertEquals("$", SymbolMap.getSymbol("$"))
+        assertEquals("#", SymbolMap.getSymbol("#"))
+        assertEquals("_", SymbolMap.getSymbol("_"))
+        assertEquals("{", SymbolMap.getSymbol("{"))
+        assertEquals("}", SymbolMap.getSymbol("}"))
+        assertEquals("~", SymbolMap.getSymbol("~"))
+        assertEquals("^", SymbolMap.getSymbol("^"))
+        assertEquals("\\", SymbolMap.getSymbol("\\"))
+    }
+
     // ========== 括号测试 ==========
 
     @Test

@@ -246,6 +246,18 @@ object SymbolMap {
         "lbrace" to "{",
         "rbrace" to "}",
 
+        // 转义特殊字符
+        "&" to "&",
+        "%" to "%",
+        "$" to "$",
+        "#" to "#",
+        "_" to "_",
+        "{" to "{",
+        "}" to "}",
+        "~" to "~",
+        "^" to "^",
+        "\\" to "\\",
+
         // 其他
         "sum" to "∑",
         "prod" to "∏",
