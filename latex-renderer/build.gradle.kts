@@ -72,13 +72,22 @@ kotlin {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/ivaniskandar/latex")
+            credentials {
+                username = project.findProperty("githubUser")?.toString() ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("githubApiKey")?.toString() ?: System.getenv("GITHUB_API_KEY")
+            }
+        }
+    }
+}
+
 mavenPublishing {
-    publishToMavenCentral(true)
-
-    signAllPublications()
-
     coordinates(
-        "io.github.huarangmeng",
+        "xyz.ivaniskandar",
         "latex-renderer",
         rootProject.property("VERSION").toString()
     )

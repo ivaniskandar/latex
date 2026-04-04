@@ -56,12 +56,21 @@ kotlin {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/ivaniskandar/latex")
+            credentials {
+                username = project.findProperty("githubUser")?.toString() ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("githubApiKey")?.toString() ?: System.getenv("GITHUB_API_KEY")
+            }
+        }
+    }
+}
+
 mavenPublishing {
-    publishToMavenCentral(true)
-
-    signAllPublications()
-
-    coordinates("io.github.huarangmeng", "latex-base", rootProject.property("VERSION").toString())
+    coordinates("xyz.ivaniskandar", "latex-base", rootProject.property("VERSION").toString())
 
     pom {
         name.set("Kotlin Multiplatform LaTeX Rendering Engine")

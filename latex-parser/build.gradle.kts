@@ -65,12 +65,21 @@ tasks.withType<Test>().configureEach {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/ivaniskandar/latex")
+            credentials {
+                username = project.findProperty("githubUser")?.toString() ?: System.getenv("GITHUB_USER")
+                password = project.findProperty("githubApiKey")?.toString() ?: System.getenv("GITHUB_API_KEY")
+            }
+        }
+    }
+}
+
 mavenPublishing {
-    publishToMavenCentral(true)
-
-    signAllPublications()
-
-    coordinates("io.github.huarangmeng", "latex-parser", rootProject.property("VERSION").toString())
+    coordinates("xyz.ivaniskandar", "latex-parser", rootProject.property("VERSION").toString())
 
     pom {
         name.set("Kotlin Multiplatform LaTeX Parser")
