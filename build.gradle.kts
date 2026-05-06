@@ -12,3 +12,11 @@ plugins {
     alias(libs.plugins.kotlinxBenchmark) apply false
     alias(libs.plugins.mavenPublish) apply false
 }
+
+val gitShortHash: String = providers.exec {
+    commandLine("git", "rev-parse", "--short", "HEAD")
+}.standardOutput.asText.get().trim()
+
+allprojects {
+    extra.set("VERSION", gitShortHash)
+}
